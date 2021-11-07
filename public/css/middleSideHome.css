@@ -1,0 +1,55 @@
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  #inicio h1 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+
+  #QueEstasPensando img {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+  }
+
+  #QueEstasPensando input[type="text"] {
+    padding: 10px;
+    color: #fff;
+    background-color: transparent;
+  }
+
+  #QueEstasPensando p {
+    margin-bottom: 0;
+    padding: 5px;
+    color: blue;
+  }
+  #QueEstasPensando i {
+    color: rgb(168, 168, 219);
+    font-size: 1.3rem;
+  }
+
+  #QueEstasPensando input[type="button"] {
+    width: 100px;
+    margin-left: 100px;
+  }
+
+  #QueEstasPensando hr {
+    color: #fff;
+  }
+}

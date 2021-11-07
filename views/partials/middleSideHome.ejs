@@ -1,0 +1,38 @@
+<div id="inicio">
+  <h1>Inicio</h1>
+</div>
+
+<div id="QueEstasPensando">
+  <div class="row">
+    <div class="col-lg-2">
+      <img
+        src="https://scontent.fmvd1-1.fna.fbcdn.net/v/t1.6435-9/232345452_352339376503864_4544747437720486296_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=174925&_nc_ohc=WS8GlC4UAngAX83zzEL&_nc_ht=scontent.fmvd1-1.fna&oh=531df642d4796f63b759e20fb1490bad&oe=61AEF86E"
+        alt="Federico Trotta"
+      />
+    </div>
+    <div class="col-lg-10">
+      <div>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Qué estás pensando?"
+          name="tweet"
+          id="tweet"
+        />
+        <p>Cualquier persona puede responder</p>
+        <hr />
+        <div class="d-flex justify-content-around">
+          <i class="far fa-image"></i>
+          <i class="fas fa-gift"></i>
+          <i class="fas fa-question"></i>
+          <i class="fas fa-smile-beam"></i>
+          <i class="fas fa-calendar-times"></i>
+          <input class="btn btn-primary" type="button" value="Twittear" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+</div>
+
+<%- include("singleTweet") %>
