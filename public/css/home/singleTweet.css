@@ -1,0 +1,47 @@
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .singleTweet {
+    margin-bottom: 30px;
+    transition: 1.2s;
+    padding: 10px;
+    border-radius: 60px;
+  }
+
+  .singleTweet:hover {
+    background-color: rgba(119, 118, 118, 0.89);
+    cursor: pointer;
+  }
+  .singleTweet img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  .singleTweet em {
+    color: grey;
+  }
+  .singleTweet p {
+    color: #fff;
+    margin-bottom: 4px;
+    margin-left: 30px;
+  }
+
+  .singleTweet i {
+    margin-top: 10px;
+    color: grey;
+  }
+}
