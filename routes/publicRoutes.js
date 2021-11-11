@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const publicController = require("../controllers/publicController");
+const logedIn = require("../middlewares/isAuthenticated");
 
-router.get("/", publicController.index); // Muesta el home, lista las cosas (render)
+router.get("/", logedIn, publicController.index); // Muesta el home, lista las cosas (render)
 router.get("/", publicController.show); // Muestra uno solo. (render)
 router.get("/", publicController.create); // Muestra el formulario para crear un articulo (render)
 router.post("/", publicController.store); // Es un post, postea lo que se creo en create (redirect)

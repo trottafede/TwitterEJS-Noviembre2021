@@ -1,6 +1,7 @@
 module.exports = {
   index: (req, res) => {
-    res.render("home");
+    const user = req.user;
+    res.render("home", { user });
   },
   show: (req, res) => {},
   create: (req, res) => {},

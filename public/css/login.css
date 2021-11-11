@@ -80,4 +80,13 @@
     margin-left: 20px;
     font-size: 0.78rem;
   }
+
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    outline: none !important;
+    border: 2px solid rgb(219, 4, 209);
+    box-shadow: 0 0 10px #f1c4e4;
+  }
 }

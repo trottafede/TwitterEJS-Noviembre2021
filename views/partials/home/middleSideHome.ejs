@@ -2,12 +2,14 @@
   <h1>Inicio</h1>
 </div>
 
+<% if (user) { %>
+
 <div id="QueEstasPensando">
   <div class="row">
     <div class="col-lg-2">
       <img
-        src="https://scontent.fmvd1-1.fna.fbcdn.net/v/t1.6435-9/232345452_352339376503864_4544747437720486296_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=174925&_nc_ohc=WS8GlC4UAngAX83zzEL&_nc_ht=scontent.fmvd1-1.fna&oh=531df642d4796f63b759e20fb1490bad&oe=61AEF86E"
-        alt="Federico Trotta"
+        src="<%- user.image %>"
+        alt="<%- user.firstname %> <%- user.lastname %>"
       />
     </div>
     <div class="col-lg-10">
@@ -35,4 +37,6 @@
   <hr />
 </div>
 
+<% } %>
+<!---->
 <%- include("singleTweet") %>

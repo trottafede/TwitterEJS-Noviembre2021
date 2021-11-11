@@ -1,0 +1,81 @@
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  #inicio h1 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-top: 20px;
+  }
+
+  #bgImg {
+    background-image: url("https://i.pinimg.com/originals/39/42/6b/39426b48f954bbb2da6a9bc88bbe26c7.jpg");
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+  }
+
+  #profileInfo #imgContainer {
+    display: flex;
+    flex-direction: column;
+    height: 110%;
+    justify-content: end;
+  }
+  #profileInfo img {
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+  }
+
+  #profileInfo h2 {
+    font-size: 1.28rem;
+  }
+  #profileInfo em {
+    display: block;
+    font-size: 0.94rem;
+    margin-bottom: 10px;
+    color: grey;
+  }
+
+  #contactInfo {
+    color: #fff;
+  }
+  #profileInfo hr {
+    color: #fff;
+  }
+
+  .bgBlack {
+    color: #fff;
+    background-color: black !important;
+  }
+
+  .bgBlack input[type="text"],
+  .bgBlack input[type="number"] {
+    color: #fff;
+
+    background-color: black !important;
+  }
+
+  .bgBlack input[type="text"]:focus,
+  .bgBlack input[type="number"]:focus {
+    outline: none !important;
+    border: 2px solid rgb(207, 42, 138);
+    box-shadow: 0 0 10px #f1c4e4;
+  }
+  .bgGrey {
+    background-color: rgba(151, 145, 145, 0.164);
+  }
+}

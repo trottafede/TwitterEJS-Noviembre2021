@@ -5,4 +5,5 @@ const authRoutes = require("./authRoutes");
 module.exports = (app) => {
   app.use(publicRoutes);
   app.use(authRoutes);
+  app.use(userRoutes);
 };

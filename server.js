@@ -4,7 +4,9 @@ const app = express();
 const path = require("path");
 const routes = require("./routes");
 const port = process.env.PORT || 8000;
+const passport = require("./middlewares/passport");
 
+const db = require("./models");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
@@ -12,7 +14,9 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+passport(app);
+// Db connection
+db();
 // Routes
 routes(app);
 

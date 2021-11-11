@@ -1,4 +1,4 @@
-@import "commonColors.css";
+@import "home/commonColors.css";
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
 }
@@ -16,19 +16,9 @@
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  #middleSideHome {
-    border: 0.1px solid grey;
-  }
-
   body {
     background-color: var(--main-bg-color) !important;
     padding-left: 30px;
     padding-right: 30px;
-  }
-
-  input[type="text"]:focus {
-    outline: none !important;
-    border: 2px solid rgb(207, 42, 138);
-    box-shadow: 0 0 10px #f1c4e4;
   }
 }

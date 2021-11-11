@@ -1,3 +1,6 @@
+const User = require("../models/User");
+const passport = require("passport");
+
 module.exports = {
   createLogin: (req, res) => {
     res.render("login");
@@ -6,11 +9,28 @@ module.exports = {
     res.render("signup");
   },
 
-  storeLogin: (req, res) => {
-    console.log(req.body);
-  },
-  storeSignup: (req, res) => {
-    console.log(req.body);
+  storeLogin: passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+  }),
+
+  storeSignup: async (req, res) => {
+    const { firstname, lastname, username, email, password } = req.body;
+
+    try {
+      const user = new User({
+        firstname,
+        lastname,
+        username,
+        email,
+        password,
+      });
+      const savedUser = await user.save();
+      console.log(savedUser);
+    } catch (error) {
+      if (error) throw error;
+    }
+    res.redirect("/");
   },
   edit: (req, res) => {},
   update: (req, res) => {},
