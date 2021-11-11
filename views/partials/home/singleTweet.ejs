@@ -2,53 +2,20 @@
   <div class="row">
     <div class="col-lg-1">
       <img
-        src="https://pbs.twimg.com/profile_images/1405244720616407040/Ek-iYBbz_400x400.jpg"
-        alt="hermanota"
+        src="<%- tweet.User.image %>"
+        alt="<%- tweet.User.firstname %> <%- tweet.User.lastname %>"
       />
     </div>
     <div class="col-lg-11">
-      <p>MoonDays <em>@MoonDaysok - 6 nov</em></p>
-      <p>Me volvieron a restringir la cuenta de ig :))))))))))))))))</p>
-      <div class="d-flex justify-content-around">
-        <em><i class="far fa-comment"></i> 20</em>
-        <em><i class="fas fa-retweet"></i> 5</em>
-        <em><i class="far fa-heart"></i> 80</em>
-        <i class="fas fa-share"></i>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="singleTweet">
-  <div class="row">
-    <div class="col-lg-1">
-      <img
-        src="https://pbs.twimg.com/profile_images/1405244720616407040/Ek-iYBbz_400x400.jpg"
-        alt="hermanota"
-      />
-    </div>
-    <div class="col-lg-11">
-      <p>MoonDays <em>@MoonDaysok - 6 nov</em></p>
-      <p>Que locura la presentacion, Imagine Dragons te amo UWU #Worlds2021</p>
-      <div class="d-flex justify-content-around">
-        <em><i class="far fa-comment"></i> 20</em>
-        <em><i class="fas fa-retweet"></i> 5</em>
-        <em><i class="far fa-heart"></i> 80</em>
-        <i class="fas fa-share"></i>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="singleTweet">
-  <div class="row">
-    <div class="col-lg-1">
-      <img
-        src="https://pbs.twimg.com/profile_images/1405244720616407040/Ek-iYBbz_400x400.jpg"
-        alt="hermanota"
-      />
-    </div>
-    <div class="col-lg-11">
-      <p>MoonDays <em>@MoonDaysok - 6 nov</em></p>
-      <p>Todo harcodeado :V:V</p>
+      <p>
+        <%- tweet.User.lastname %>
+        <em
+          >@<%- tweet.User.username %> - <%-
+          tweet.createdAt.toLocaleDateString('en-us', { weekday:"short",
+          year:"numeric", month:"short"}); %></em
+        >
+      </p>
+      <p><%- tweet.Text%></p>
       <div class="d-flex justify-content-around">
         <em><i class="far fa-comment"></i> 20</em>
         <em><i class="fas fa-retweet"></i> 5</em>

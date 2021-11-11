@@ -31,9 +31,85 @@
     </li>
   </ul>
   <div id="buttonHome">
-    <a class="btn btn-primary" href="#">Twittear</a>
+    <!-- Button trigger modal -->
+
+    <a
+      class="btn btn-primary"
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#twittearModal"
+      href="#"
+      draggable="false"
+      >Twittear</a
+    >
   </div>
 </nav>
+
+<!-- Modal -->
+<form action="/tweets/store" method="post">
+  <div
+    class="modal fade"
+    id="twittearModal"
+    tabindex="-1"
+    aria-labelledby="twittearModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-fullscreen-sm-down">
+      <div class="modal-content bgBlack">
+        <div class="modal-header">
+          <h5 class="modal-title" id="twittearModalLabel">
+            <a type="button" data-bs-dismiss="modal">
+              <i class="far fa-times-circle"></i>
+            </a>
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="modal-body">
+          <% if (user) { %>
+          <div id="QueEstasPensandoModal">
+            <div class="row">
+              <div class="col-lg-2">
+                <img
+                  src="<%- user.image %>"
+                  alt="<%- user.firstname %> <%- user.lastname %>"
+                />
+              </div>
+              <div class="col-lg-10">
+                <div>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Qué estás pensando?"
+                    name="tweet"
+                    id="tweet"
+                  />
+                  <p>Cualquier persona puede responder</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <% } %>
+        </div>
+        <div class="modal-footer d-flex justify-content-around">
+          <i class="far fa-image"></i>
+          <i class="fas fa-gift"></i>
+          <i class="fas fa-question"></i>
+          <i class="fas fa-smile-beam"></i>
+          <i class="fas fa-calendar-times"></i>
+          <button type="submit" class="btn btn-primary">Twittear</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
 
 <% if (user) { %>
 <div id="activeUser">

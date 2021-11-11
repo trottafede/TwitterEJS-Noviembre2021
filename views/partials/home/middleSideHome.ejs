@@ -13,30 +13,39 @@
       />
     </div>
     <div class="col-lg-10">
-      <div>
-        <input
-          class="form-control"
-          type="text"
-          placeholder="Qué estás pensando?"
-          name="tweet"
-          id="tweet"
-        />
-        <p>Cualquier persona puede responder</p>
-        <hr />
-        <div class="d-flex justify-content-around">
-          <i class="far fa-image"></i>
-          <i class="fas fa-gift"></i>
-          <i class="fas fa-question"></i>
-          <i class="fas fa-smile-beam"></i>
-          <i class="fas fa-calendar-times"></i>
-          <input class="btn btn-primary" type="button" value="Twittear" />
+      <form action="/tweets/store" method="post">
+        <div>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Qué estás pensando?"
+            name="tweet"
+            id="tweet"
+          />
+          <p>Cualquier persona puede responder</p>
+          <hr />
+
+          <div class="d-flex justify-content-around">
+            <i class="far fa-image"></i>
+            <i class="fas fa-gift"></i>
+            <i class="fas fa-question"></i>
+            <i class="fas fa-smile-beam"></i>
+            <i class="fas fa-calendar-times"></i>
+            <input class="btn btn-primary" type="submit" value="Twittear" />
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
   <hr />
 </div>
 
-<% } %>
+<% } %> <% if (tweets) { %>
 <!---->
-<%- include("singleTweet") %>
+<% tweets.forEach(function(tweet){ %>
+<!--  -->
+<%- include("singleTweet", {tweet}); %>
+<!--  -->
+<% }); %> <% } else { %>
+<p>No hay tweets, se el primero</p>
+<% } %>

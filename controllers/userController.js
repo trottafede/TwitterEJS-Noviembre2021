@@ -5,7 +5,10 @@ module.exports = {
     const username = req.params.username;
 
     try {
-      const user = await User.findOne({ username });
+      const user = await User.findOne({ username }).populate({
+        path: "tweetsList",
+        options: { limit: 20 },
+      });
       return res.render("profile", { user });
     } catch (error) {
       if (error) throw error;
@@ -26,7 +29,11 @@ module.exports = {
         { username },
         { firstname, lastname, age, description, image },
         options
-      );
+      ).populate({
+        path: "tweetsList",
+        options: { limit: 20 },
+      });
+
       return res.render("profile", { user: userPatched });
     } catch (error) {
       if (error) throw error;

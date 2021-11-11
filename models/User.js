@@ -11,14 +11,30 @@ const userSchema = new Schema({
   email: String,
   password: String,
   description: String,
+
   image: {
     type: String,
     default:
       "https://i1.wp.com/9tailedkitsune.com/wp-content/uploads/2021/06/luckystaranime.jpg?resize=800%2C600&ssl=1",
   },
-  tweetsList: String,
-  following: String,
-  followers: String,
+  tweetsList: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Tweet",
+    },
+  ],
+  following: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  followers: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
   createdAt: { type: Date, default: Date.now },
 });
 

@@ -20,7 +20,7 @@
           type="button"
           class="btn btn-outline-light mt-3"
           data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
+          data-bs-target="#editProfileModal"
           data-bs-whatever="@getbootstrap"
         >
           Editar Perfil
@@ -49,15 +49,15 @@
 <!-- Modal -->
 <div
   class="modal fade bgGrey"
-  id="exampleModal"
+  id="editProfileModal"
   tabindex="-1"
-  aria-labelledby="exampleModalLabel"
+  aria-labelledby="editProfileModalLabel"
   aria-hidden="true"
 >
   <div class="modal-dialog">
     <div class="modal-content bgBlack">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar Perfil</h5>
+        <h5 class="modal-title" id="editProfileModalLabel">Editar Perfil</h5>
         <button
           type="button"
           class="btn-close"
@@ -151,6 +151,10 @@
 </div>
 
 <!-- My tweets -->
+
+<% if (user.tweetsList.length > 0) { %>
+<%user.tweetsList.forEach(function(tweet){ %>
+
 <div class="singleTweet">
   <div class="row">
     <div class="col-lg-1">
@@ -164,11 +168,11 @@
         <%- user.username %>
         <em
           >@<%- user.username %> - <%-
-          user.createdAt.toLocaleDateString('en-us', { weekday:"short",
+          tweet.createdAt.toLocaleDateString('en-us', { weekday:"short",
           year:"numeric", month:"short"}); %></em
         >
       </p>
-      <p>Primer tweet</p>
+      <p><%- tweet.Text %></p>
       <div class="d-flex justify-content-around">
         <em><i class="far fa-comment"></i> 20</em>
         <em><i class="fas fa-retweet"></i> 5</em>
@@ -178,4 +182,7 @@
     </div>
   </div>
 </div>
-<% } %>
+
+<% }); %> <% } else {%>
+<p>You have no tweets</p>
+<% } %> <% } %>

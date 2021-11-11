@@ -6,4 +6,5 @@ module.exports = (app) => {
   app.use(publicRoutes);
   app.use(authRoutes);
   app.use(userRoutes);
+  app.use(tweetRoutes);
 };
