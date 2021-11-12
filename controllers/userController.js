@@ -3,42 +3,42 @@ const User = require("../models/User");
 module.exports = {
   show: async (req, res) => {
     const username = req.params.username;
-
+    let userFound;
     try {
-      const user = await User.findOne({ username }).populate({
+      userFound = await User.findOne({ username }).populate({
         path: "tweetsList",
-        options: { limit: 20 },
+        options: { limit: 20, sort: [{ createdAt: "DESC" }] },
       });
-      return res.render("profile", { user });
     } catch (error) {
       if (error) throw error;
     }
-    res.status(404).send("no existe esa persona");
+
+    res.render("profile", { passportUser: req.user, user: userFound });
   },
   create: (req, res) => {},
   store: (req, res) => {},
   edit: (req, res) => {},
   update: async (req, res) => {
-    const username = req.params.username;
+    const passportUser = req.user;
     const { firstname, lastname, age, description, image } = req.body;
-
+    let updatedPassportUser;
     try {
       const options = { new: true };
-
-      const userPatched = await User.findOneAndUpdate(
-        { username },
+      updatedPassportUser = await User.findOneAndUpdate(
+        passportUser,
         { firstname, lastname, age, description, image },
         options
       ).populate({
         path: "tweetsList",
-        options: { limit: 20 },
+        options: { limit: 20, sort: [{ createdAt: "DESC" }] },
       });
-
-      return res.render("profile", { user: userPatched });
     } catch (error) {
       if (error) throw error;
     }
-    res.status(404).send("no se pudo patchear a esa persona");
+    res.render("profile", {
+      passportUser: updatedPassportUser,
+      user: updatedPassportUser,
+    });
   },
   destroy: (req, res) => {},
 };

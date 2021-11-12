@@ -10,9 +10,6 @@
     <!-- css -->
     <link rel="stylesheet" href="/css/profile.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
-    <link rel="stylesheet" href="/css/middleSideProfile.css" />
-    <link rel="stylesheet" href="/css/home/rightSideHome.css" />
-    <link rel="stylesheet" href="/css/home/singleTweet.css" />
     <!-- Bootstrap 5 -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -33,9 +30,324 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-3"><%- include("partials/navbar") %></div>
-        <div class="col-lg-6"><%- include("partials/middleSideProfile") %></div>
+        <div class="col-lg-6">
+          <% if (user) { %>
+          <div id="inicio">
+            <h1><%- user.firstname %> <%- user.lastname %></h1>
+          </div>
+
+          <div id="profileInfo">
+            <div class="row">
+              <div class="col-lg-12">
+                <div id="bgImg">
+                  <div id="imgContainer">
+                    <img
+                      src="<%- user.image %>"
+                      alt="<%- user.firstname %> <%- user.lastname %>"
+                    />
+                  </div>
+                </div>
+
+                <% if (user.username == passportUser.username) { %>
+                <div class="text-end">
+                  <a
+                    type="button"
+                    class="btn btn-outline-light mt-3"
+                    data-bs-toggle="modal"
+                    data-bs-target="#editProfileModal"
+                    data-bs-whatever="@getbootstrap"
+                  >
+                    Editar Perfil
+                  </a>
+                </div>
+                <% } else { %>
+
+                <div class="text-end">
+                  <a class="followButton" href="#" type="button"> Follow </a>
+                </div>
+                <% } %>
+
+                <div id="contactInfo">
+                  <h2><%- user.firstname %> <%- user.lastname %></h2>
+                  <em>@<%- user.username %></em>
+                  <% if (user.description) { %>
+                  <p><%- user.description %></p>
+                  <% } else {%>
+                  <p>Escribe una descripción <a href="#"> aquí</a></p>
+                  <% } %>
+                  <em
+                    ><i class="fas fa-calendar-alt"></i> Se unió en <%-
+                    user.createdAt.toLocaleDateString('en-us', { weekday:"long",
+                    year:"numeric", month:"long"}); %></em
+                  >
+                  <p>26 siguiendo - 4 Seguidores</p>
+                </div>
+              </div>
+            </div>
+            <hr />
+          </div>
+
+          <!-- Modal -->
+          <div
+            class="modal fade bgGrey"
+            id="editProfileModal"
+            tabindex="-1"
+            aria-labelledby="editProfileModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content bgBlack">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editProfileModalLabel">
+                    Editar Perfil
+                  </h5>
+
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <form action="/users/<%- user.username %> " method="post">
+                    <div class="mb-3">
+                      <label for="firstname" class="col-form-label"
+                        >Nombre</label
+                      >
+                      <input
+                        type="text"
+                        value="<%- user.firstname %> "
+                        name="firstname"
+                        class="form-control"
+                        id="firstname"
+                      />
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="lastname" class="col-form-label"
+                        >Apellido</label
+                      >
+                      <input
+                        type="text"
+                        value="<%- user.lastname %> "
+                        name="lastname"
+                        class="form-control"
+                        id="lastname"
+                      />
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="age" class="col-form-label">Edad</label>
+                      <input
+                        value="<%- user.age %>"
+                        type="number"
+                        name="age"
+                        class="form-control"
+                        id="age"
+                      />
+                    </div>
+
+                    <!-- <div class="mb-3">
+                      <label for="password" class="col-form-label"
+                        >Nueva Contraseña</label
+                      >
+                      <input
+                        type="password"
+                        name="password"
+                        class="form-control"
+                        id="password"
+                      />
+                    </div> -->
+
+                    <div class="mb-3">
+                      <label for="description" class="col-form-label"
+                        >Descripción</label
+                      >
+                      <input
+                        value="<%- user.description %> "
+                        type="text"
+                        name="description"
+                        class="form-control"
+                        id="description"
+                      />
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="image" class="col-form-label">Imágen</label>
+                      <input
+                        value="<%- user.image %> "
+                        type="text"
+                        name="image"
+                        class="form-control"
+                        id="image"
+                      />
+                    </div>
+
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button type="submit" class="btn btn-primary">
+                        Guardar
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- My tweets -->
+
+          <% if (user.tweetsList.length > 0) { %>
+          <%user.tweetsList.forEach(function(tweet){ %>
+
+          <div class="singleTweet">
+            <div class="row">
+              <div class="col-lg-1">
+                <img
+                  src="<%- user.image %>"
+                  alt="<%- user.firstname %> <%- user.lastname %>"
+                />
+              </div>
+              <div class="col-lg-11">
+                <p>
+                  <%- user.username %>
+                  <em
+                    >@<%- user.username %> - <%-
+                    tweet.createdAt.toLocaleString("es-ES"); %></em
+                  >
+                </p>
+                <p><%- tweet.Text %></p>
+                <div class="d-flex justify-content-around">
+                  <em><i class="far fa-comment"></i> 20</em>
+                  <em><i class="fas fa-retweet"></i> 5</em>
+                  <em><i class="far fa-heart"></i> 80</em>
+                  <i class="fas fa-share"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <% }); %> <% } else {%>
+          <p>You have no tweets</p>
+          <% } %> <% } %>
+        </div>
         <div class="col-lg-3">
-          <%- include("partials/home/rightSideHome") %>
+          <div id="buscador" class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="search"
+              placeholder="Buscar en twitter"
+            />
+            <label for="search"
+              ><i class="fas fa-search"></i> Buscar en Twitter</label
+            >
+          </div>
+
+          <div id="tendencias">
+            <h3>Tendencias para ti</h3>
+
+            <div class="noticia">
+              <p>Politíca - Tendencias</p>
+              <h4>Ortega</h4>
+              <p>36,3 mil Tweets</p>
+            </div>
+
+            <div class="noticia">
+              <p>Tendencia en Uruguay</p>
+              <h4>URSS</h4>
+              <p>2.093 Tweets</p>
+            </div>
+
+            <div class="noticia">
+              <p>Tendencia en Uruguay</p>
+              <h4>#Arcane</h4>
+              <p>120 mil Tweets</p>
+            </div>
+
+            <div class="noticia">
+              <p>Entretenimiento - Tendencias</p>
+              <h4>#Eternals</h4>
+              <p>36,3 mil Tweets</p>
+            </div>
+
+            <div class="noticia">
+              <p>Tendencia en Uruguay</p>
+              <h4>Teletón</h4>
+              <p>6.678 Tweets</p>
+            </div>
+            <a href="#">Mostrar más</a>
+          </div>
+
+          <div id="whoToFollow">
+            <h3>A quién seguir</h3>
+
+            <div class="toFollow">
+              <img
+                src="data:image/png;base64,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"
+                alt="sports china"
+              />
+              <div id="userInfo">
+                <h5>Sports China <i class="fa fa-check-circle"></i></h5>
+                <p>@PDChinaSports</p>
+                <p>Promocionado</p>
+              </div>
+
+              <div id="followBtn">
+                <a class="btn btn-light" href="#">Seguir</a>
+              </div>
+            </div>
+
+            <div class="toFollow">
+              <img
+                src="https://img.x-drivers.com/news/2017/244.jpg"
+                alt="bill gates"
+              />
+              <div id="userInfo">
+                <h5>Bill Gates <i class="fa fa-check-circle"></i></h5>
+                <p>@billy</p>
+                <p>People</p>
+              </div>
+
+              <div id="followBtn">
+                <a class="btn btn-light" href="#">Seguir</a>
+              </div>
+            </div>
+
+            <div class="toFollow">
+              <img
+                src="https://cachedimages.podchaser.com/256x256/aHR0cHM6Ly9jcmVhdG9yLWltYWdlcy5wb2RjaGFzZXIuY29tL2RmODZjM2RjZTg5ZDI2ZGQzZWI5NWU4YzI1MDBhMTIyLmpwZWc%3D/aHR0cHM6Ly93d3cucG9kY2hhc2VyLmNvbS9pbWFnZXMvbWlzc2luZy1pbWFnZS5wbmc%3D"
+                alt="elon musk"
+              />
+              <div id="userInfo">
+                <h5>Elon Musk <i class="fa fa-check-circle"></i></h5>
+                <p>@musk</p>
+                <p>People</p>
+              </div>
+
+              <div id="followBtn">
+                <a class="btn btn-light" href="#">Seguir</a>
+              </div>
+            </div>
+
+            <a href="#">Mostrar más</a>
+          </div>
+
+          <div id="copyright">
+            <p>Condiciones de Servicio Política de Privacidad</p>
+            <p>
+              Política de cookies Información de anuncios
+              <br />
+              Más opciones © 2021 Twitter, Inc.
+            </p>
+          </div>
         </div>
       </div>
     </div>

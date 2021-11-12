@@ -22,7 +22,7 @@
       <i class="far fa-list-alt"></i> <a href="#">Listas</a>
     </li>
     <li>
-      <a href="/users/<%- user.username %>"
+      <a href="/users/<%- passportUser.username %>"
         ><i class="far fa-user"></i> Perfil</a
       >
     </li>
@@ -72,13 +72,13 @@
         </div>
 
         <div class="modal-body">
-          <% if (user) { %>
+          <% if (passportUser) { %>
           <div id="QueEstasPensandoModal">
             <div class="row">
               <div class="col-lg-2">
                 <img
-                  src="<%- user.image %>"
-                  alt="<%- user.firstname %> <%- user.lastname %>"
+                  src="<%- passportUser.image %>"
+                  alt="<%- passportUser.firstname %> <%- passportUser.lastname %>"
                 />
               </div>
               <div class="col-lg-10">
@@ -111,15 +111,15 @@
   </div>
 </form>
 
-<% if (user) { %>
+<% if (passportUser) { %>
 <div id="activeUser">
   <img
-    src="<%- user.image %>"
-    alt="<%- user.firstname %> <%- user.lastname %>"
+    src="<%- passportUser.image %>"
+    alt="<%- passportUser.firstname %> <%- passportUser.lastname %>"
   />
   <div id="activeUserInfo">
-    <p><%- user.firstname %> <%- user.lastname %></p>
-    <em>@<%- user.username %></em>
+    <p><%- passportUser.firstname %> <%- passportUser.lastname %></p>
+    <em>@<%- passportUser.username %></em>
   </div>
 </div>
 <% } %>
