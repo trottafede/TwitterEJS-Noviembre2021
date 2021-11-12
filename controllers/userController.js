@@ -41,4 +41,40 @@ module.exports = {
     });
   },
   destroy: (req, res) => {},
+  destroyFriendship: async (req, res) => {
+    const { username } = req.params;
+    const loggedUser = req.user;
+    try {
+      const userIWillFollow = await User.findOne({ username });
+      if (loggedUser.following.includes(userIWillFollow._id)) {
+        let pos = await loggedUser.following.indexOf(userIWillFollow._id);
+        await loggedUser.following.splice(pos, 1); // this is how to remove an item
+        await loggedUser.save();
+
+        pos = await userIWillFollow.followers.indexOf(loggedUser._id);
+        await userIWillFollow.followers.splice(pos, 1); // this is how to remove an item
+        await userIWillFollow.save();
+      }
+    } catch (error) {
+      if (error) throw error;
+    }
+    res.redirect("back");
+  },
+  storeFollow: async (req, res) => {
+    const { username } = req.params;
+    const loggedUser = req.user;
+    try {
+      const userIWillFollow = await User.findOne({ username });
+      if (!loggedUser.following.includes(userIWillFollow._id)) {
+        await loggedUser.following.push(userIWillFollow);
+        await loggedUser.save();
+
+        await userIWillFollow.followers.push(loggedUser);
+        await userIWillFollow.save();
+      }
+    } catch (error) {
+      if (error) throw error;
+    }
+    res.redirect("back");
+  },
 };

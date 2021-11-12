@@ -10,4 +10,13 @@ router.get("/", usersController.edit); // Retorna vista del formulario de edici√
 router.post("/users/:username", usersController.update); // [PUT] o [PATCH] Retorna un redirect. Actualiza algo de la DB
 router.delete("/", usersController.destroy); // Borra un articulo de la DB. Retorna un redirect.
 
+router.get("/users/following/:username", usersController.storeFollow); // Borra un articulo de la DB. Retorna un redirect.
+router.get("/users/follower", usersController.destroy); // Borra un articulo de la DB. Retorna un redirect.
+
+router.get(
+  "/users/destroyFriendship/:username",
+  usersController.destroyFriendship
+); // Borra un articulo de la DB. Retorna un redirect.
+router.delete("/", usersController.destroy); // Borra un articulo de la DB. Retorna un redirect.
+
 module.exports = router;

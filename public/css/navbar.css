@@ -56,7 +56,11 @@
   #activeUser {
     margin-top: 40px;
     display: flex;
-    justify-content: start;
+    justify-content: space-around;
+  }
+  #leftSideActiveUser {
+    display: flex;
+    justify-content: center;
   }
 
   #activeUserInfo {
@@ -77,6 +81,14 @@
   #activeUser em {
     color: grey;
   }
+  #activeUser a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: grey;
+    font-size: 1rem;
+    text-decoration: none;
+  }
 
   #QueEstasPensandoModal img {
     border-radius: 50%;
@@ -95,5 +107,8 @@
     color: #fff;
 
     background-color: black !important;
+  }
+  .bgGrey {
+    background-color: rgba(151, 145, 145, 0.164);
   }
 }

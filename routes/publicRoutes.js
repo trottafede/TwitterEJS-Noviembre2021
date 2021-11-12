@@ -12,4 +12,6 @@ router.get("/", publicController.edit); // Retorna vista del formulario de edici
 router.patch("/", publicController.update); // [PUT] o [PATCH] Retorna un redirect. Actualiza algo de la DB
 router.delete("/", publicController.destroy); // Borra un articulo de la DB. Retorna un redirect.
 
+router.get("/logout", publicController.logout);
+
 module.exports = router;

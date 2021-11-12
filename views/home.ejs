@@ -102,7 +102,25 @@
                 <div class="d-flex justify-content-around">
                   <em><i class="far fa-comment"></i> 20</em>
                   <em><i class="fas fa-retweet"></i> 5</em>
-                  <em><i class="far fa-heart"></i> 80</em>
+
+                  <% if (tweet.Likes.includes(passportUser._id)) { %>
+                  <em
+                    ><a href="/likes/destroy/<%- tweet.id %>"
+                      ><i class="fas fa-heart redHeart"></i
+                    ></a>
+                    <%- tweet.Likes.length %></em
+                  >
+
+                  <% } else { %>
+                  <em
+                    ><a href="/likes/update/<%- tweet.id %>"
+                      ><i class="far fa-heart"></i
+                    ></a>
+                    <%- tweet.Likes.length %></em
+                  >
+
+                  <% } %>
+
                   <i class="fas fa-share"></i>
                 </div>
               </div>
@@ -166,54 +184,42 @@
           <div id="whoToFollow">
             <h3>A quién seguir</h3>
 
+            <% users.forEach(function(User){ %>
             <div class="toFollow">
               <img
-                src="data:image/png;base64,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"
-                alt="sports china"
+                src="<%- User.image %>"
+                alt="<%- User.firstname %> <%- User.lastname %>"
               />
               <div id="userInfo">
-                <h5>Sports China <i class="fa fa-check-circle"></i></h5>
-                <p>@PDChinaSports</p>
-                <p>Promocionado</p>
-              </div>
-
-              <div id="followBtn">
-                <a class="btn btn-light" href="#">Seguir</a>
-              </div>
-            </div>
-
-            <div class="toFollow">
-              <img
-                src="https://img.x-drivers.com/news/2017/244.jpg"
-                alt="bill gates"
-              />
-              <div id="userInfo">
-                <h5>Bill Gates <i class="fa fa-check-circle"></i></h5>
-                <p>@billy</p>
+                <h5>
+                  <a href="/users/<%- User.username %>"
+                    ><%- User.firstname %> <%- User.lastname %></a
+                  >
+                  <i class="fa fa-check-circle"></i>
+                </h5>
+                <p>@<%- User.username %></p>
                 <p>People</p>
               </div>
 
               <div id="followBtn">
-                <a class="btn btn-light" href="#">Seguir</a>
+                <% if (passportUser.following.includes(User._id)) { %>
+                <a
+                  class="btn btn-outline-danger whiteFont"
+                  href="/users/destroyFriendship/<%- User.username %>"
+                  >Unfollow</a
+                >
+
+                <% } else { %>
+                <a
+                  class="btn btn-light"
+                  href="/users/following/<%- User.username %>"
+                  >Follow</a
+                >
+
+                <% } %>
               </div>
             </div>
-
-            <div class="toFollow">
-              <img
-                src="https://cachedimages.podchaser.com/256x256/aHR0cHM6Ly9jcmVhdG9yLWltYWdlcy5wb2RjaGFzZXIuY29tL2RmODZjM2RjZTg5ZDI2ZGQzZWI5NWU4YzI1MDBhMTIyLmpwZWc%3D/aHR0cHM6Ly93d3cucG9kY2hhc2VyLmNvbS9pbWFnZXMvbWlzc2luZy1pbWFnZS5wbmc%3D"
-                alt="elon musk"
-              />
-              <div id="userInfo">
-                <h5>Elon Musk <i class="fa fa-check-circle"></i></h5>
-                <p>@musk</p>
-                <p>People</p>
-              </div>
-
-              <div id="followBtn">
-                <a class="btn btn-light" href="#">Seguir</a>
-              </div>
-            </div>
-
+            <% }); %>
             <a href="#">Mostrar más</a>
           </div>
 

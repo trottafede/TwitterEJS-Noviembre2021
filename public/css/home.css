@@ -183,6 +183,12 @@
     /* margin-left: 10px; */
     display: inline-block;
   }
+  #userInfo h5 a {
+    color: #fff !important;
+  }
+  #userInfo h5 a:hover {
+    text-decoration: underline;
+  }
 
   #followBtn {
     /* margin-left: 10px; */
@@ -262,6 +268,14 @@
 
   #QueEstasPensando hr {
     color: #fff;
+  }
+
+  .redHeart {
+    color: red !important;
+  }
+
+  .whiteFont {
+    color: #fff !important;
   }
   /* Middle Side-------------------------------------------------------------------------------- */
 }

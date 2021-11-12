@@ -63,7 +63,21 @@
                 <% } else { %>
 
                 <div class="text-end">
-                  <a class="followButton" href="#" type="button"> Follow </a>
+                  <% if (passportUser.following.includes(user._id)) { %>
+                  <a
+                    class="followButton btn btn-outline-danger whiteFont"
+                    href="/users/destroyFriendship/<%- user.username %>"
+                    >Unfollow</a
+                  >
+
+                  <% } else { %>
+                  <a
+                    class="followButton btn btn-light"
+                    href="/users/following/<%- user.username %>"
+                    >Follow</a
+                  >
+
+                  <% } %>
                 </div>
                 <% } %>
 
@@ -80,7 +94,10 @@
                     user.createdAt.toLocaleDateString('en-us', { weekday:"long",
                     year:"numeric", month:"long"}); %></em
                   >
-                  <p>26 siguiendo - 4 Seguidores</p>
+                  <p>
+                    <%- user.following.length %> siguiendo - <%-
+                    user.followers.length %> Seguidores
+                  </p>
                 </div>
               </div>
             </div>
@@ -148,18 +165,6 @@
                       />
                     </div>
 
-                    <!-- <div class="mb-3">
-                      <label for="password" class="col-form-label"
-                        >Nueva Contraseña</label
-                      >
-                      <input
-                        type="password"
-                        name="password"
-                        class="form-control"
-                        id="password"
-                      />
-                    </div> -->
-
                     <div class="mb-3">
                       <label for="description" class="col-form-label"
                         >Descripción</label
@@ -217,7 +222,7 @@
               </div>
               <div class="col-lg-11">
                 <p>
-                  <%- user.username %>
+                  <%- user.firstname %> <%- user.lastname %>
                   <em
                     >@<%- user.username %> - <%-
                     tweet.createdAt.toLocaleString("es-ES"); %></em
@@ -227,7 +232,23 @@
                 <div class="d-flex justify-content-around">
                   <em><i class="far fa-comment"></i> 20</em>
                   <em><i class="fas fa-retweet"></i> 5</em>
-                  <em><i class="far fa-heart"></i> 80</em>
+                  <% if (tweet.Likes.includes(passportUser._id)) { %>
+                  <em
+                    ><a href="/likes/destroy/<%- tweet.id %>"
+                      ><i class="fas fa-heart redHeart"></i
+                    ></a>
+                    <%- tweet.Likes.length %></em
+                  >
+
+                  <% } else { %>
+                  <em
+                    ><a href="/likes/update/<%- tweet.id %>"
+                      ><i class="far fa-heart"></i
+                    ></a>
+                    <%- tweet.Likes.length %></em
+                  >
+
+                  <% } %>
                   <i class="fas fa-share"></i>
                 </div>
               </div>
