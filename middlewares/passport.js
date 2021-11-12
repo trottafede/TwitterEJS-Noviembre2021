@@ -1,6 +1,8 @@
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const MongoStore = require("connect-mongo");
+
 /*
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
@@ -15,6 +17,10 @@ module.exports = (app) => {
       // Docs: "The default value is true, but using the default has been deprecated ".
       saveUninitialized: false,
       // Docs: "The default value is true, but using the default has been deprecated ".
+      store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_CONNECTION,
+        ttl: 14 * 24 * 60 * 60, // = 14 days. Default
+      }),
     })
   );
 

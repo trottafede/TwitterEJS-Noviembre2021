@@ -188,14 +188,14 @@
             <div class="toFollow">
               <img
                 src="<%- User.image %>"
-                alt="<%- User.firstname %> <%- User.lastname %>"
+                alt="<%- User.firstname%> <%- User.lastname %>"
               />
               <div id="userInfo">
                 <h5>
                   <a href="/users/<%- User.username %>"
-                    ><%- User.firstname %> <%- User.lastname %></a
-                  >
-                  <i class="fa fa-check-circle"></i>
+                    ><%- User.firstname.substr(0, 1)%>. <%-
+                    User.lastname.substr(0, 6 ) %></a
+                  ><i class="fa fa-check-circle"></i>
                 </h5>
                 <p>@<%- User.username %></p>
                 <p>People</p>
